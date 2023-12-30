@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik+Mono+One&display=swap');
+
+$fnt_hdg: 'Rubik Mono One', monospace;
+$fnt_def: 'Fira Sans', sans-serif;
+$acc_clr: #ffcb05;
+$txt_drk: #202020;
+$txt_drk2: #122331;
+$txt_lgt: #ffffff;
+$brd_rad_small: 0.5rem;
+$brd_rad_mid: 1rem;
+$mid_screen: 850px;
+$small_screen: 500px;
+
+.light {
+  --bg_clr: #ffffff;
+  --bg_ftr: #202020;
+  --txt_clr1: #202020;
+  --txt_clr2: #404040;
+  --brd_clr: #80808020;
+  --trk_clr: #f0f0f0;
+}
+
+.dark {
+  --bg_clr: #202020;
+  --bg_ftr: #000000;
+  --txt_clr1: #e2e2e2;
+  --txt_clr2: #ffffff;
+  --brd_clr: #3c3c3c;
+  --trk_clr: #000000;
+}
+
+@mixin position($type, $x, $y, $x_value, $y_value) {
+  position: $type;
+  #{$x}: $x_value;
+  #{$y}: $y_value;
+}
+
+@mixin uniTranslate($dir, $val) {
+  transform: translate#{$dir }($val);
+}
+
+@mixin biTranslate($x, $y) {
+  transform: translate($x, $y);
+}
+
+@mixin mediaQuery($type, $val) {
+  @media screen and (#{$type}-width: $val) {
+    @content;
+  }
+}
+
+@mixin flexDisp($justify, $align, $dir: row) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $dir;
+}

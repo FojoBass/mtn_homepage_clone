@@ -1,0 +1,38 @@
+@use 'config' as *;
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 10px;
+  font-family: $fnt_def;
+
+  @include mediaQuery(max, $mid_screen) {
+    font-size: 9px;
+  }
+  @include mediaQuery(max, $small_screen) {
+    font-size: 8px;
+  }
+}
+
+button {
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
