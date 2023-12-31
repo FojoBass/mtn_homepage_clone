@@ -12,6 +12,11 @@ const Navbar = () => {
   const mobDropContentRef = useRef<HTMLUListElement | null>(null);
   const [isDrop, setIsDrop] = useState(false);
   const [isOverlay, setIsOverlay] = useState(false);
+  const midSideRef = useRef<HTMLDivElement | null>(null);
+  const expandableRef = useRef<HTMLDivElement | null>(null);
+  const isSubHoverRef = useRef(false);
+  const initialHeightRef = useRef(0);
+  const topWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let unsub: number;
@@ -39,6 +44,95 @@ const Navbar = () => {
     return () => clearTimeout(unsub);
   }, [isDrop]);
 
+  useEffect(() => {
+    if (midSideRef.current && expandableRef.current) {
+      const midSideEl = midSideRef.current;
+      const expandableEl = expandableRef.current;
+      // let subNavContainers: HTMLUListElement[] = [];
+
+      let navOptEls: HTMLDivElement[] = [
+        ...midSideEl.children,
+      ] as HTMLDivElement[];
+      navOptEls = navOptEls.splice(0, navOptEls.length - 1);
+      const subNavContainers = navOptEls.map(
+        (el) => el.children[el.children.length - 1]
+      ) as HTMLUListElement[];
+
+      navOptEls.forEach((el) => {
+        el.onmouseover = () => {
+          const contentEl = el.children[el.children.length - 1];
+          contentEl.classList.add('active');
+          if (!isSubHoverRef.current)
+            expandableEl.style.height =
+              contentEl.getBoundingClientRect().height + 'px';
+          initialHeightRef.current = contentEl.getBoundingClientRect().height;
+
+          topWrapperRef.current &&
+            topWrapperRef.current.classList.add('lrg_active');
+        };
+
+        el.onmouseleave = () => {
+          const contentEl = el.children[el.children.length - 1];
+          contentEl.classList.remove('active');
+          topWrapperRef.current &&
+            topWrapperRef.current.classList.remove('lrg_active');
+        };
+      });
+
+      subNavContainers.forEach((el) => {
+        el.onmouseover = (e) => {
+          isSubHoverRef.current = true;
+          let targetEl = e.target as HTMLElement;
+          if (
+            targetEl.classList.contains('no_hover') ||
+            targetEl.parentElement?.classList.contains('no_hover')
+          ) {
+            const newTargetEl = targetEl.classList.contains('no_hover')
+              ? targetEl
+              : targetEl.parentElement?.classList.contains('no_hover')
+              ? targetEl.parentElement
+              : null;
+
+            const dropContainerEl = newTargetEl?.children[
+              newTargetEl?.children.length - 1
+            ] as HTMLElement | undefined;
+            const dropContentEl = dropContainerEl?.children[0] as
+              | HTMLElement
+              | undefined;
+
+            if (dropContainerEl && dropContentEl && newTargetEl) {
+              dropContainerEl.style.height =
+                dropContentEl.getBoundingClientRect().height + 'px';
+              if (
+                !(
+                  expandableEl.getBoundingClientRect().height >
+                  initialHeightRef.current
+                )
+              )
+                expandableEl.style.height =
+                  expandableEl.getBoundingClientRect().height +
+                  dropContentEl.getBoundingClientRect().height -
+                  20 +
+                  'px';
+
+              newTargetEl.onmouseleave = () => {
+                dropContainerEl.style.height = '0';
+              };
+            }
+          }
+        };
+
+        el.onmouseleave = () => {
+          isSubHoverRef.current = false;
+        };
+      });
+
+      midSideEl.onmouseleave = () => {
+        expandableEl.style.height = '0';
+      };
+    }
+  }, []);
+
   return (
     <nav id='nav_sect'>
       {isOverlay && <section className='overlay'></section>}
@@ -63,16 +157,28 @@ const Navbar = () => {
       </ul>
 
       <section className='navbar_sect'>
-        <div className='top_wrapper'>
+        <div
+          className={`top_wrapper ${isDrop ? 'active' : ''}`}
+          ref={topWrapperRef}
+        >
           <div className='left_side'>
             <div className='logo_wrapper'>
               <img src={logo} alt='mtn logo' />
             </div>
 
-            <div className='midside'>
+            <div className='midside' ref={midSideRef}>
               {navOpts.map((opt, index) => (
                 <div className='navopt' key={`${opt}${index}`}>
-                  <span className='opt_title'>{opt.title}</span>
+                  <div className='opt_title_wrapper'>
+                    <span className='opt_title'>{opt.title}</span>
+                    {opt.opts.length ? (
+                      ''
+                    ) : (
+                      <span className='arrow_icon'>
+                        <FaLongArrowAltRight />
+                      </span>
+                    )}
+                  </div>
                   <ul className='navsub_opts top_level'>
                     {opt.opts.map((subOpt, ind) =>
                       typeof subOpt === 'string' ? (
@@ -80,8 +186,13 @@ const Navbar = () => {
                           <div className='title'>{subOpt}</div>
                         </li>
                       ) : (
-                        <li className='navsub_opt' key={`${ind}`}>
-                          <div className='title'>{subOpt.title}</div>
+                        <li className='navsub_opt no_hover' key={`${ind}`}>
+                          <div className='title'>
+                            {subOpt.title}
+                            <span className='drop_icon'>
+                              <FaAngleDown />
+                            </span>
+                          </div>
 
                           <SubOptsDrop opts={subOpt.opts as NavOptsInt[]} />
                         </li>
@@ -91,7 +202,7 @@ const Navbar = () => {
                 </div>
               ))}
 
-              <div className='expandable_drop'></div>
+              <div className='expandable_drop' ref={expandableRef}></div>
             </div>
           </div>
 
