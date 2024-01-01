@@ -3,6 +3,7 @@ import { navAcctOpt, navOpts } from '../data';
 import logo from '../assets/mtn_logo.svg';
 import { NavOptsInt } from '../types';
 import { CiSearch } from 'react-icons/ci';
+import { IoMdClose } from 'react-icons/io';
 import { FaAngleRight, FaAngleDown, FaLongArrowAltRight } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 
@@ -17,6 +18,7 @@ const Navbar = () => {
   const isSubHoverRef = useRef(false);
   const initialHeightRef = useRef(0);
   const topWrapperRef = useRef<HTMLDivElement>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     let unsub: number;
@@ -207,7 +209,10 @@ const Navbar = () => {
           </div>
 
           <div className='rightside'>
-            <button className='search_btn'>
+            <button
+              className='search_btn'
+              onClick={() => setIsSearchOpen(true)}
+            >
               <CiSearch />
             </button>
 
@@ -250,6 +255,23 @@ const Navbar = () => {
           </ul>
         </div>
       </section>
+
+      <form
+        className={`search_form ${isSearchOpen ? 'active' : ''}`}
+        onSubmit={(e) => e.preventDefault()}
+      >
+        <div className='left_side'>
+          <input type='text' className='search_input' />
+        </div>
+        <div className='right_side'>
+          <button className='enter_search_btn'>
+            <CiSearch />
+          </button>
+          <button className='close_btn' onClick={() => setIsSearchOpen(false)}>
+            <IoMdClose />
+          </button>
+        </div>
+      </form>
     </nav>
   );
 };
