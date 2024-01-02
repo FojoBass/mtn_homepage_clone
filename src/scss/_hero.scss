@@ -1,0 +1,87 @@
+@use 'config' as *;
+
+.hero_sect {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @include mediaQuery(max, 1000px) {
+    background-position: right -300px center;
+  }
+
+  @include mediaQuery(max, 730px) {
+    background-position: right -450px center;
+  }
+
+  @include mediaQuery(max, 500px) {
+    background-position: center;
+  }
+
+  &.large {
+    background-image: url('../assets/hero_big.jpeg');
+  }
+
+  &.small {
+    background-image: url('../assets/hero_small.jpeg');
+  }
+
+  .hero_text {
+    max-width: 700px;
+    @include position(relative, left, top, 120px, 50%);
+    @include uniTranslate(Y, -50%);
+    color: $txt_drk;
+    @include mediaQuery(max, $mid_screen) {
+      left: 40px;
+      top: 45%;
+      max-width: 600px;
+    }
+
+    @include mediaQuery(max, 549px) {
+      max-width: 400px;
+      top: 70%;
+    }
+
+    @include mediaQuery(max, 500px) {
+      color: $txt_lgt;
+    }
+
+    @media screen and (max-width: 730px) and (min-width: 550px) {
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 7rem;
+
+      @include mediaQuery(max, 549px) {
+        font-size: 5rem;
+      }
+    }
+
+    h3 {
+      margin-top: 20px;
+      font-size: 2.5rem;
+      font-weight: 400;
+
+      @include mediaQuery(max, 549px) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .hero_btm {
+    width: 95%;
+    @include position(absolute, left, bottom, 50%, 20px);
+    @include uniTranslate(X, -50%);
+    backdrop-filter: blur(50px);
+    padding: 20px 0;
+    text-align: center;
+    border-radius: $brd_rad_mid;
+    overflow: hidden;
+
+    .cta_btn {
+      padding: 10px 50px;
+      letter-spacing: 0.1rem;
+      font-size: 1.5rem;
+    }
+  }
+}
