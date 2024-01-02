@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
 import { HomeProvider } from './contexts/homeContext';
 import Home from './home';
+import { useAppContext } from './contexts/appContext';
 
 const App = () => {
+  const { setTheme } = useAppContext();
+
   useEffect(() => {
     const mode: string = localStorage.getItem('mtn_proj_theme')
       ? localStorage.getItem('mtn_proj_theme')!
       : 'light';
-    document.documentElement.classList.add(mode);
+    setTheme && setTheme(mode);
   }, []);
 
   return (

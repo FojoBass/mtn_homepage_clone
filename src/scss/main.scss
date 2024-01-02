@@ -1,4 +1,67 @@
-@use 'config';
+@use 'config' as *;
 @use 'defaults';
 @use 'navbar';
 @use 'hero';
+@use 'services';
+@use 'devices';
+
+.mode_wrapper {
+  @include position(fixed, left, top, 0px, 50%);
+  @include uniTranslate(Y, -50%);
+  padding: 20px;
+  z-index: 2;
+
+  .mode_btn {
+    font-size: 3rem;
+    background-color: transparent;
+
+    span {
+      @include position(absolute, left, top, 15px, 0);
+      opacity: 0;
+      transition: all ease-in-out 0.5s;
+
+      &.active {
+        opacity: 0.5;
+        @include uniTranslate(X, 0);
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .light_icon {
+      color: var(--acc_clr);
+      @include uniTranslate(X, -50px);
+
+      &:hover {
+        filter: drop-shadow(0 0 10px var(--acc_clr))
+          drop-shadow(0 0 20px var(--acc_clr))
+          drop-shadow(0 0 30px var(--acc_clr));
+      }
+    }
+
+    .dark_icon {
+      color: #dadada;
+      @include uniTranslate(X, 50px);
+
+      &:hover {
+        filter: drop-shadow(0 0 10px #dadada) drop-shadow(0 0 20px #dadada)
+          drop-shadow(0 0 30px #dadada);
+      }
+    }
+  }
+}
+
+.dark_overlay {
+  position: relative;
+  z-index: 1;
+  &:after {
+    opacity: 1;
+  }
+
+  & + .services_sect {
+    position: relative;
+    z-index: 1;
+  }
+}

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useAppContext } from '../contexts/appContext';
 
 const Hero = () => {
-  const [issmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 500);
+  const [issmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 500),
+    { theme } = useAppContext();
 
   useEffect(() => {
     window.onresize = () => {
@@ -11,7 +13,11 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className={`hero_sect ${issmallScreen ? 'small' : 'large'}`}>
+    <section
+      className={`hero_sect ${issmallScreen ? 'small' : 'large'} ${
+        theme === 'dark' ? 'dark_overlay' : ''
+      }`}
+    >
       <header className='hero_text'>
         <h1>Enjoy 50GB Free + 50% Bonus</h1>
         <h3>on every recharege on myMTN NG App</h3>

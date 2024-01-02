@@ -1,0 +1,63 @@
+@use 'config' as *;
+
+.dark .services_sect .opt_wrapper:hover {
+  color: $txt_drk !important;
+}
+
+.services_sect {
+  overflow: hidden;
+  border-radius: $brd_rad_lrg $brd_rad_lrg 0 0;
+  background-color: var(--bg_clr);
+  margin-top: -15px;
+
+  .center_sect {
+    padding: 50px 0;
+
+    .opts_wrapper {
+      @include flexDisp(center, center);
+      flex-wrap: wrap;
+
+      @include mediaQuery(min, 1130px) {
+        justify-content: space-between;
+      }
+
+      .opt_wrapper {
+        @include flexDisp(center, center, column);
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        color: var(--txt_clr2);
+        transition: all ease-out 0.5s;
+        @include mediaQuery(min, $small_screen) {
+          width: 150px;
+          height: 150px;
+        }
+
+        @include mediaQuery(min, $mid_screen) {
+          width: 170px;
+          height: 170px;
+        }
+
+        &:hover {
+          background-color: lighten(#ffcb05, 30);
+        }
+
+        .opt_icon {
+          font-size: 5rem;
+          @include mediaQuery(min, $small_screen) {
+            font-size: 7rem;
+          }
+        }
+
+        .opt_title {
+          font-size: 1.4rem;
+          @include mediaQuery(min, $small_screen) {
+            font-size: 1.7rem;
+          }
+        }
+      }
+    }
+  }
+}

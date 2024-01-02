@@ -6,7 +6,7 @@
   position: fixed;
   width: 100%;
   background: linear-gradient(180deg, #202020f5, #20202000);
-  // height: 80px;
+  z-index: 10;
 
   @include mediaQuery(max, $lrg_screen) {
     height: 40px;
@@ -84,7 +84,7 @@
 
     .top_wrapper {
       @include flexDisp(space-between, center);
-      background-color: $acc_clr;
+      background-color: var(--acc_clr);
       border-radius: $brd_rad_small;
       padding: 10px 15px;
       transition: all ease-out 0.5s;
@@ -186,7 +186,7 @@
                 }
 
                 &:not(#{&}.no_hover):hover .title {
-                  background-color: $acc_clr;
+                  background-color: var(--acc_clr);
                 }
 
                 &:hover .title {
@@ -226,7 +226,7 @@
                       margin-bottom: 10px;
 
                       &:hover {
-                        background-color: $acc_clr;
+                        background-color: var(--acc_clr);
                         font-weight: 600;
                       }
                     }
@@ -241,7 +241,8 @@
             @include position(fixed, left, top, 50%, $drop_top);
             @include uniTranslate(X, -50%);
             background-color: var(--bg_clr);
-            box-shadow: 3px 3px 10px #c9c9c939, -3px 0 10px #c9c9c939;
+            box-shadow: 3px 3px 10px var(--shd_clr2),
+              -3px 0 10px var(--shd_clr2);
             border-radius: 0 0 $brd_rad_mid $brd_rad_mid;
             height: 0;
             transition: all ease-out 0.5s;
@@ -389,7 +390,7 @@
                 border-radius: $brd_rad_small;
 
                 &:not(#{&}.no_hover):hover {
-                  background-color: $acc_clr;
+                  background-color: var(--acc_clr);
                   font-weight: 500;
                 }
 

@@ -2,12 +2,12 @@
 
 $fnt_hdg: 'Rubik Mono One', monospace;
 $fnt_def: 'Fira Sans', sans-serif;
-$acc_clr: #ffcb05;
 $txt_drk: #202020;
 $txt_drk2: #122331;
 $txt_lgt: #ffffff;
 $brd_rad_small: 0.5rem;
 $brd_rad_mid: 1rem;
+$brd_rad_lrg: 2rem;
 $lrg_screen: 1100px;
 $mid_screen: 850px;
 $small_screen: 500px;
@@ -19,6 +19,9 @@ $small_screen: 500px;
   --txt_clr2: #404040;
   --brd_clr: #80808020;
   --trk_clr: #f0f0f0;
+  --shd_clr: #8080808f;
+  --shd_clr2: #80808020;
+  --acc_clr: #ffcb05;
 }
 
 .dark {
@@ -28,6 +31,9 @@ $small_screen: 500px;
   --txt_clr2: #ffffff;
   --brd_clr: #3c3c3c;
   --trk_clr: #000000;
+  --shd_clr: #000000;
+  --shd_clr2: #0000002d;
+  --acc_clr: #e3b500;
 }
 
 @mixin position($type, $x, $y, $x_value, $y_value) {
@@ -55,4 +61,15 @@ $small_screen: 500px;
   align-items: $align;
   justify-content: $justify;
   flex-direction: $dir;
+}
+
+@mixin sectOverlay() {
+  content: '';
+  @include position(absolute, left, top, 0, 0);
+  width: 100%;
+  height: 100%;
+  background-color: #00000046;
+  z-index: -1;
+  opacity: 0;
+  transition: all ease 0.5s;
 }

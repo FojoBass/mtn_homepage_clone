@@ -18,7 +18,10 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [acctTypeOpt, setAcctTypeOpt] = useState('personal');
 
-  const sharedProps: HomeContextInt = { acctTypeOpt, setAcctTypeOpt };
+  const sharedProps: HomeContextInt = {
+    acctTypeOpt,
+    setAcctTypeOpt,
+  };
 
   return (
     <HomeContext.Provider value={sharedProps}>{children}</HomeContext.Provider>
