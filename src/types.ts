@@ -16,3 +16,9 @@ export interface DevicesOptInt {
   size: string;
   price: string;
 }
+
+export interface DoingOptsInt {
+  icon: IconType;
+  title: string;
+  text: string;
+}

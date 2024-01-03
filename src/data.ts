@@ -1,10 +1,16 @@
-import { DevicesOptInt, NavOptsInt, ServiceOptInt } from './types';
+import {
+  DevicesOptInt,
+  DoingOptsInt,
+  NavOptsInt,
+  ServiceOptInt,
+} from './types';
 import { TfiWorld } from 'react-icons/tfi';
 import { BsBrowserSafari } from 'react-icons/bs';
 import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { PiBatteryVerticalFullLight } from 'react-icons/pi';
 import { GrGift } from 'react-icons/gr';
 import { FiShoppingCart } from 'react-icons/fi';
+import { LiaHandshake } from 'react-icons/lia';
 
 export const navOpts: NavOptsInt[] = [
   {
@@ -106,4 +112,30 @@ export const devicesOpts: DevicesOptInt[] = [
     price: '35,000',
     size: '50MBPS',
   },
+];
+
+export const doingOpts: DoingOptsInt[] = [
+  {
+    icon: LiaHandshake,
+    title: 'connect with loved ones',
+    text: 'Discover affordable voice and data plans tailored for seamless communication with loved ones',
+  },
+  {
+    icon: TfiWorld,
+    title: 'explore the digital world',
+    text: 'Unlock endless possibilities with our high-speed data plans and robust network coverage',
+  },
+  {
+    icon: IoPhonePortraitOutline,
+    title: 'stay productive on the go',
+    text: 'Leverage innovative solutions designed to boost productivity for professionals and businesses',
+  },
+];
+
+export const quickLinks: string[] = [
+  'roaming',
+  'device financing',
+  '4G LTE',
+  'MTN pulse',
+  'NIN',
 ];

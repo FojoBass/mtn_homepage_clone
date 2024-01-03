@@ -1,0 +1,70 @@
+@use 'config' as *;
+
+.doing_sect {
+  background-color: var(--bg_clr);
+  display: flow-root;
+  padding: 0 30px;
+
+  .center_sect {
+    h1 {
+      margin-top: 70px;
+      padding: 30px 0 40px;
+      text-align: center;
+      border-top: 2px solid var(--brd_clr);
+      font-size: 5rem;
+      color: var(--txt_clr1);
+      letter-spacing: 0.1rem;
+
+      @include mediaQuery(max, $mid_screen) {
+        margin-top: 50px;
+      }
+    }
+
+    .doings_opts {
+      @include flexDisp(space-between, center);
+      gap: 20px;
+
+      @include mediaQuery(max, 900px) {
+        flex-direction: column;
+      }
+
+      .doings_opt {
+        max-width: 350px;
+        text-align: center;
+        transition: all ease-out 0.5s;
+
+        @include mediaQuery(max, 900px) {
+          &:nth-child(odd) {
+            align-self: flex-start;
+            text-align: left;
+          }
+
+          align-self: flex-end;
+          text-align: right;
+        }
+
+        .heading {
+          margin-bottom: 1.2rem;
+          color: var(--txt_clr2);
+
+          .icon {
+            font-size: 6rem;
+          }
+
+          .title {
+            text-transform: capitalize;
+            font-size: 2rem;
+            letter-spacing: 0.1rem;
+          }
+        }
+
+        .text {
+          font-size: 1.5rem;
+          color: var(--txt_clr1);
+          line-height: 2.2rem;
+          letter-spacing: 0.1rem;
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@
 @use 'hero';
 @use 'services';
 @use 'devices';
+@use 'doings';
 
 .mode_wrapper {
   @include position(fixed, left, top, 0px, 50%);
@@ -64,4 +65,9 @@
     position: relative;
     z-index: 1;
   }
+}
+
+.int_obs {
+  opacity: 0;
+  scale: 0.5;
 }

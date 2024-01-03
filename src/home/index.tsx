@@ -6,9 +6,12 @@ import Subscribe from './Subscribe';
 import { IoSunny } from 'react-icons/io5';
 import { FaLongArrowAltRight, FaMoon } from 'react-icons/fa';
 import { useAppContext } from '../contexts/appContext';
+import { useHomeContext } from '../contexts/homeContext';
+import Doings from './Doings';
 
 const Home = () => {
   const { theme, setTheme } = useAppContext();
+  const { intersectRef } = useHomeContext();
 
   return (
     <>
@@ -20,7 +23,11 @@ const Home = () => {
         <div className='center_sect'>
           <div className='opts_wrapper'>
             {servicesOpts.map((opt) => (
-              <button className='opt_wrapper' key={opt.title}>
+              <button
+                className='opt_wrapper int_obs'
+                key={opt.title}
+                ref={(el) => el && intersectRef?.current?.push(el)}
+              >
                 <span className='opt_icon'>{<opt.icon />}</span>
                 <span className='opt_title'>{opt.title}</span>
               </button>
@@ -33,16 +40,16 @@ const Home = () => {
         <h1 className='heading_text'>
           Devices <button className='cta_btn'>all devices</button>
         </h1>
-
         <div className='center_sect'>
           <div className='devices_opts'>
             {devicesOpts.map(({ name, size, imgUrl, price }) => (
               <div
-                className={`devices_opt`}
+                className='devices_opt int_obs'
                 style={{
                   backgroundImage: `url(${imgUrl})`,
                 }}
                 key={name}
+                ref={(el) => el && intersectRef?.current?.push(el)}
               >
                 <h3 className='name'>{name}</h3>
 
@@ -60,11 +67,15 @@ const Home = () => {
             ))}
           </div>
         </div>
-
-        <button className='cta_btn'>all devices</button>
+        <button
+          className='cta_btn int_obs'
+          ref={(el) => el && intersectRef?.current?.push(el)}
+        >
+          all devices
+        </button>
       </section>
 
-      <p>Get doing</p>
+      <Doings />
       <QuickLinks />
       <p>Search</p>
       <p>Favs</p>

@@ -468,6 +468,7 @@
     opacity: 0;
     transform-origin: left;
     transform: scale(0) translateX(-50%);
+    background-color: var(--bg_clr);
 
     &.active {
       opacity: 1;
@@ -486,7 +487,7 @@
         width: 100%;
         font-size: 2.1rem;
         color: var(--txt_clr1);
-        // background-color: red;
+        background-color: inherit;
       }
     }
 

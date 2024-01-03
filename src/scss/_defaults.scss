@@ -76,7 +76,7 @@ img {
   }
 }
 
-.larg_center_sect {
+.lrg_center_sect {
   max-width: 95%;
   margin: auto;
 }
@@ -86,7 +86,7 @@ img {
   background-color: var(--acc_clr);
   color: var(--txt_clr1);
   text-transform: uppercase;
-  transition: all ease 0.3s;
+  transition: all ease 0.5s;
   border: 2px solid transparent;
 
   &:hover {
