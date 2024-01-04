@@ -4,10 +4,11 @@ import Navbar from './Navbar';
 import QuickLinks from './QuickLinks';
 import Subscribe from './Subscribe';
 import { IoSunny } from 'react-icons/io5';
-import { FaLongArrowAltRight, FaMoon } from 'react-icons/fa';
+import { FaAngleRight, FaLongArrowAltRight, FaMoon } from 'react-icons/fa';
 import { useAppContext } from '../contexts/appContext';
 import { useHomeContext } from '../contexts/homeContext';
 import Doings from './Doings';
+import { CiSearch } from 'react-icons/ci';
 
 const Home = () => {
   const { theme, setTheme } = useAppContext();
@@ -77,8 +78,82 @@ const Home = () => {
 
       <Doings />
       <QuickLinks />
-      <p>Search</p>
-      <p>Favs</p>
+
+      <section className='search_sect'>
+        <div className='center_sect'>
+          <aside
+            className='left_side int_obs'
+            ref={(el) => el && intersectRef?.current?.push(el)}
+          >
+            <div className='form_search'>
+              <input type='text' placeholder='Search help...' />
+              <button className='search_btn'>
+                <CiSearch />
+              </button>
+            </div>
+
+            <div className='left_opts_wrapper'>
+              <div className='left_opt_wrapper'>
+                <div className='left_opt'>
+                  <span className='title'>5G</span>
+                  <span className='icon'>
+                    <FaAngleRight />
+                  </span>
+                </div>
+              </div>
+
+              <div className='left_opt_wrapper'>
+                <div className='left_opt'>
+                  <span className='title'>Broadband</span>
+                  <span className='icon'>
+                    <FaAngleRight />
+                  </span>
+                </div>
+              </div>
+
+              <div className='left_opt_wrapper'>
+                <div className='left_opt'>
+                  <span className='title'>Data</span>
+                  <span className='icon'>
+                    <FaAngleRight />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <aside
+            className='right_side int_obs'
+            ref={(el) => el && intersectRef?.current?.push(el)}
+          >
+            <p className='question'>need help?</p>
+            <h3>Buy a SIM card</h3>
+            <p>
+              A SIM card is included in every prepaid - PayAsYouGo - starter
+              pack bought at any MTN Store or participating retailer.
+            </p>
+
+            <button className='read_more_btn'>
+              read more{' '}
+              <span className='icon'>
+                <FaAngleRight />
+              </span>
+            </button>
+          </aside>
+        </div>
+      </section>
+
+      <section className='fav_sect'>
+        <div
+          className={`lrg_center_sect ${
+            theme === 'dark' ? 'dark_overlay' : ''
+          }`}
+        >
+          <h1>Enjoy access to your favorite social media apps</h1>
+          <button className='more_btn'>view more</button>
+        </div>
+      </section>
+
       <p>Footer</p>
 
       <div className='mode_wrapper'>

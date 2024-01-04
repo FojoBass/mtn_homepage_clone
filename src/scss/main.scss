@@ -5,6 +5,9 @@
 @use 'services';
 @use 'devices';
 @use 'doings';
+@use 'qlink';
+@use 'help';
+@use 'fav';
 
 .mode_wrapper {
   @include position(fixed, left, top, 0px, 50%);
@@ -58,7 +61,7 @@
   position: relative;
   z-index: 1;
   &:after {
-    opacity: 1;
+    opacity: 1 !important;
   }
 
   & + .services_sect {

@@ -1,0 +1,142 @@
+@use 'config' as *;
+
+.qlinks_sect {
+  background-color: var(--bg_clr);
+  display: flow-root;
+  transition: all ease-out 0.5s;
+
+  .lrg_center_sect {
+    margin-top: 150px;
+    background-image: url('../assets/dealzone_desktop.jpeg');
+    border-radius: $brd_rad_lrg;
+    height: 80vh;
+    min-height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    box-shadow: inset 0px -200px 100px 0px #000000cc;
+    @include flexDisp(flex-end, center, column);
+    color: $txt_lgt;
+    position: relative;
+    padding-bottom: 30px;
+
+    @include mediaQuery(max, $small_screen) {
+      background-image: url('../assets/dealzone_mobile.jpeg');
+    }
+
+    &::after {
+      @include sectOverlay();
+    }
+
+    h1 {
+      font-size: 7rem;
+      text-transform: capitalize;
+      margin-bottom: 50px;
+      letter-spacing: 0.2rem;
+    }
+
+    .carousel_wrapper {
+      position: relative;
+      width: 90%;
+      // background-color: green;
+
+      .slider_container {
+        width: 100%;
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+        // background-color: red;
+      }
+
+      .slider {
+        @include position(absolute, left, top, 0, 0);
+        height: 100%;
+        display: flex;
+        padding: 0 20px;
+
+        .link_wrapper {
+          // width: 415px;
+          @include flexDisp(center, center, column);
+          // background-color: green;
+          backdrop-filter: blur(30px);
+          background-color: #c8c8c826;
+          margin-right: 20px;
+          cursor: pointer;
+          border-radius: $brd_rad_lrg;
+          overflow: hidden;
+          border: 2px solid var(--brd_clr);
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          h3 {
+            font-size: 3rem;
+            text-transform: capitalize;
+            letter-spacing: 0.1rem;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+
+          p {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .carousel_btns {
+        background-color: var(--acc_clr);
+        font-size: 2.5rem;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        @include flexDisp(center, center);
+        color: $txt_drk;
+        position: absolute;
+        top: 50%;
+        @include uniTranslate(Y, -50%);
+        transition: all ease 0.5s;
+
+        @include mediaQuery(max, $mid_screen) {
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        &:hover {
+          color: $txt_lgt;
+        }
+
+        &:active {
+          scale: 0.8;
+        }
+
+        &.next_btn {
+          right: -5%;
+        }
+
+        &.prev_btn {
+          left: -4.5%;
+        }
+      }
+    }
+  }
+
+  .carousel_nav_btns {
+    @include flexDisp(center, center);
+    margin-top: 20px;
+
+    .carousel_nav_btn {
+      width: 13px;
+      height: 13px;
+      background-color: var(--txt_clr1);
+      margin-right: 10px;
+      border-radius: 50%;
+      transition: all ease 0.5s;
+
+      &.active {
+        box-shadow: 0 0 0 1px var(--bg_clr), 0 0 0 2px var(--acc_clr);
+        background-color: var(--acc_clr);
+      }
+    }
+  }
+}

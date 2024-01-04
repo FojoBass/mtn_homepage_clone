@@ -1,0 +1,18 @@
+@use 'config' as *;
+
+.fav_sect {
+  .lrg_center_sect {
+    height: 70vh;
+    min-height: 350px;
+    background-image: url('../assets/social_mediaapp_desktop.jpg');
+    position: relative;
+
+    @include mediaQuery(max, $small_screen) {
+      background-image: url('../assets/social_mediaapp_mobile.jpg');
+    }
+
+    &::after {
+      @include sectOverlay();
+    }
+  }
+}

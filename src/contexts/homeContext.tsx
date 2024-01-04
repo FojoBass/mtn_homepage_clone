@@ -13,6 +13,7 @@ interface HomeContextInt {
   acctTypeOpt?: string;
   setAcctTypeOpt?: Dispatch<SetStateAction<string>>;
   intersectRef?: RefObject<HTMLElement[]>;
+  isQLinkInt?: boolean;
 }
 
 const HomeContext = createContext<HomeContextInt>({});
@@ -22,10 +23,12 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [acctTypeOpt, setAcctTypeOpt] = useState('personal');
   const intersectRef = useRef<HTMLElement[]>([]);
+  const [isQLinkInt, setIsQlinkInt] = useState(false);
 
   const observerFunc: IntersectionObserverCallback = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        entry.target.classList.contains('qlinks_sect') && setIsQlinkInt(true);
         entry.target.classList.remove('int_obs');
         observer.unobserve(entry.target);
       }
@@ -50,6 +53,7 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
     acctTypeOpt,
     setAcctTypeOpt,
     intersectRef,
+    isQLinkInt,
   };
 
   return (
