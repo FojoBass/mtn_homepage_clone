@@ -1,0 +1,249 @@
+@use 'config' as *;
+
+.sub_sect {
+  @include position(fixed, left, top, 0, 0);
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  background-color: #00000064;
+  @include flexDisp(center, center);
+  padding: 10px;
+
+  .loading {
+    @include flexDisp(center, center, column);
+    @include position(absolute, left, top, 50%, 50%);
+    @include uniTranslate(X, -50%);
+    transition: all ease-out 0.5s;
+    opacity: 0;
+    z-index: -1;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    span {
+      display: inline-block;
+      border: 5px solid transparent;
+      border-radius: 50%;
+      transform-origin: center;
+      @include position(absolute, left, top, 50%, 50%);
+      @include biTranslate(-50%, -50%);
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      border-color: var(--acc_clr) transparent transparent transparent;
+      animation: spanAnim 1.3s linear 0s infinite;
+
+      &:nth-child(2) {
+        width: 10rem;
+        height: 10rem;
+        animation-duration: 1s;
+      }
+
+      &:last-child {
+        width: 8rem;
+        height: 8rem;
+        animation-duration: 0.7s;
+      }
+    }
+  }
+
+  main {
+    background-color: var(--bg_clr);
+    padding: 20px;
+    border-radius: $brd_rad_small;
+    position: relative;
+    max-width: 700px;
+    box-shadow: 0 0 10px var(--brd_clr2);
+    transition: all ease-out 0.5s;
+    opacity: 0;
+    z-index: -1;
+    overflow: hidden;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+
+      .close_btn {
+        animation: closeInAnim 0.5s ease-out 1700ms 1 forwards;
+      }
+
+      .img_wrapper {
+        animation: imgAnim 0.5s ease-out 500ms 1 forwards;
+      }
+
+      h1 {
+        animation: textAnim 0.5s ease-out 250ms 1 forwards;
+      }
+
+      p {
+        animation: textAnim 0.5s ease-out 0s 1 forwards;
+      }
+
+      .sub_form {
+        .opt {
+          input {
+            animation: formAnim 0.5s ease-out 500ms 1 forwards;
+          }
+
+          &:last-of-type input {
+            animation: formAnim 0.5s ease-out 700ms 1 forwards;
+          }
+        }
+
+        .sub_btn {
+          animation: formAnim 0.5s ease-out 900ms 1 forwards;
+        }
+      }
+    }
+
+    .close_btn {
+      color: var(--acc_clr);
+      font-size: 2.5rem;
+      @include position(absolute, right, top, 10px, 10px);
+      transition: color ease 0.3s;
+      padding: 5px;
+      transform: translateY(-200px);
+      opacity: 0;
+
+      &:hover {
+        color: $txt_drk;
+      }
+    }
+
+    .wrapper {
+      @include flexDisp(space-between, center);
+      min-height: 400px;
+
+      .img_wrapper {
+        height: 100%;
+        width: 20%;
+        opacity: 0;
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .right_side {
+        width: 75%;
+        color: var(--txt_clr1);
+
+        h1 {
+          font-size: 2.7rem;
+          line-height: 3.3rem;
+          margin-bottom: 10px;
+          transform: translateY(-200px);
+          opacity: 0;
+        }
+
+        p {
+          font-size: 1.7rem;
+          margin-bottom: 30px;
+          letter-spacing: 0.1rem;
+          font-weight: 300;
+          letter-spacing: 0.1rem;
+          transform: translateY(-200px);
+          opacity: 0;
+        }
+
+        input {
+          display: block;
+          padding: 20px;
+          border: 2px solid var(--brd_clr);
+          margin-bottom: 20px;
+          border-radius: $brd_rad_mid;
+          font-size: 1.5rem;
+          letter-spacing: 0.1rem;
+          color: var(--txt_clr1);
+          background-color: transparent;
+          width: 100%;
+          transform: translateX(300px);
+          opacity: 0;
+        }
+
+        .sub_btn {
+          display: block;
+          width: 100%;
+          text-align: center;
+          background-color: var(--acc_clr);
+          padding: 20px 0;
+          border-radius: $brd_rad_mid;
+          font-weight: 600;
+          letter-spacing: 0.1rem;
+          margin-top: 40px;
+          transform: translateX(300px);
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+@keyframes spanAnim {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes closeInAnim {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes closeOutAnim {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+    top: -10px;
+  }
+
+  30% {
+    transform: translateY(0);
+    opacity: 1;
+    top: -10px;
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(0);
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes imgAnim {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes textAnim {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes formAnim {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -8,12 +8,24 @@
 @use 'qlink';
 @use 'help';
 @use 'fav';
+@use 'footer';
+@use 'subs';
+
+:root.dark {
+  --shd_clr_cus: #000;
+  --txt_drk: #373737;
+}
+
+:root.light {
+  --shd_clr_cus: #000000cc;
+  --txt_drk: #3e3e3e;
+}
 
 .mode_wrapper {
   @include position(fixed, left, top, 0px, 50%);
   @include uniTranslate(Y, -50%);
   padding: 20px;
-  z-index: 2;
+  z-index: 5;
 
   .mode_btn {
     font-size: 3rem;
@@ -55,6 +67,85 @@
       }
     }
   }
+}
+
+.feedback_wrapper {
+  @include position(fixed, right, top, 0, 50%);
+  @include uniTranslate(Y, -50%);
+  background-color: #000;
+  padding: 30px 10px;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  border-radius: $brd_rad_small;
+  writing-mode: vertical-lr;
+  transition: all ease 0.3s;
+  z-index: 5;
+
+  &:hover {
+    color: var(--acc_clr);
+  }
+}
+
+.chat_bot_wrapper {
+  @include position(fixed, right, bottom, 10px, 0);
+  z-index: 5;
+
+  .text_wrapper {
+    @include position(absolute, right, top, 15px, -105px);
+    background-color: var(--bg_clr);
+    padding: 20px;
+    width: 170px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px var(--shd_clr_cus);
+    transition: all ease-out 0.5s;
+
+    &.hide {
+      opacity: 0;
+      scale: 0.5;
+    }
+
+    &:after {
+      content: '';
+      @include position(absolute, right, bottom, 40px, -25px);
+      border-style: solid;
+      border-color: var(--bg_clr) transparent transparent transparent;
+      border-width: 20px 10px 10px 40px;
+    }
+
+    h6 {
+      font-size: 1.5rem;
+      color: var(--txt_clr1);
+    }
+
+    .chat_btn {
+      margin-top: 5px;
+      background-color: var(--acc_clr);
+      padding: 5px 15px;
+      border-radius: $brd_rad_mid;
+      font-weight: 600;
+    }
+
+    .close_bot_btn {
+      @include position(absolute, right, top, 0, -3px);
+      background-color: inherit;
+      padding: 2px;
+      border-radius: 50%;
+      color: var(--txt_clr1);
+    }
+  }
+
+  .img_wrapper {
+    width: 7rem;
+  }
+}
+
+.cookie_btn {
+  @include position(fixed, left, bottom, 10px, 0);
+  z-index: 5;
+  font-size: 3.5rem;
+  color: var(--txt_drk);
 }
 
 .dark_overlay {

@@ -1,0 +1,186 @@
+@use 'config' as *;
+
+$txt_lgt: darken($txt_lgt, 10);
+
+.foot_sect {
+  background-color: $txt_drk;
+  border-radius: $brd_rad_lrg $brd_rad_lrg 0 0;
+  margin-top: -20px;
+  overflow: hidden;
+
+  .center_sect {
+    padding: 20px;
+    color: $txt_lgt;
+
+    .top {
+      @include flexDisp(center, flex-start, column);
+      border-bottom: 2px solid darken($txt_lgt, 50);
+      gap: 20px;
+      padding-bottom: 20px;
+
+      @include mediaQuery(min, $mid_screen) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .contact_wrapper {
+        padding: 10px 0;
+        border-bottom: 2px solid darken($txt_lgt, 50);
+
+        @include mediaQuery(max, $mid_screen) {
+          width: 100%;
+        }
+
+        @include mediaQuery(min, $mid_screen) {
+          border: none;
+          padding: 0;
+        }
+
+        .contact_btn {
+          font-size: 1.7rem;
+          text-transform: capitalize;
+          font-weight: 600;
+          @include flexDisp(center, center);
+          margin-bottom: 10px;
+
+          .chat_icon {
+            margin-right: 10px;
+            color: var(--acc_clr);
+            font-size: 2.5rem;
+            position: relative;
+          }
+
+          .drop_icon {
+            margin-left: 10px;
+            position: relative;
+            top: 2px;
+          }
+        }
+
+        .drop_wrapper {
+          overflow: hidden;
+          width: 100%;
+          transition: all ease 0.5s;
+          height: 0;
+
+          ul {
+            @include flexDisp(space-between, flex-start);
+            font-size: 1.2rem;
+            gap: 20px;
+
+            h3 {
+              text-transform: uppercase;
+              margin-bottom: 10px;
+            }
+
+            .opt {
+              margin-bottom: 20px;
+
+              p {
+                padding: 5px 30px;
+                background-color: $txt_lgt;
+                display: inline-block;
+                color: $txt_drk;
+                border-radius: $brd_rad_mid;
+                font-weight: 600;
+              }
+            }
+            .ul_right {
+              text-transform: capitalize;
+            }
+          }
+        }
+      }
+
+      .links_wrapper {
+        @include flexDisp(flex-start, stretch, column);
+        @include mediaQuery(min, $mid_screen) {
+          flex-direction: row;
+          justify-content: flex-start;
+          gap: 5px;
+        }
+
+        .link {
+          font-size: 1.5rem;
+          text-transform: uppercase;
+          padding-block: 10px;
+          letter-spacing: 0.1rem;
+          color: var(--acc_clr);
+          font-weight: 600;
+          transition: all ease 0.5s;
+          cursor: pointer;
+          position: relative;
+
+          @include mediaQuery(min, $mid_screen) {
+            padding: 0 5px;
+          }
+
+          &:after {
+            content: '';
+            @include position(absolute, left, bottom, 0, 0);
+            width: 0;
+            height: 1px;
+            background-color: var(--acc_clr);
+            transition: all ease 0.5s;
+          }
+
+          &:hover {
+            color: $txt_lgt;
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .bottom {
+      margin-top: 20px;
+      text-align: center;
+
+      .b_top {
+        margin-bottom: 10px;
+        @include flexDisp(center, center);
+
+        span {
+          font-size: 1.5rem;
+          position: relative;
+          transition: all ease 0.5s;
+          cursor: pointer;
+          text-transform: capitalize;
+
+          &:after {
+            content: '';
+            @include position(absolute, left, bottom, 0, 0);
+            width: 0;
+            height: 1px;
+            background-color: var(--acc_clr);
+            transition: all ease 0.5s;
+          }
+
+          &:hover {
+            color: var(--acc_clr);
+            &::after {
+              width: 100%;
+            }
+          }
+
+          &.privacy {
+            margin-right: 30px;
+          }
+        }
+      }
+
+      .rights {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.dark .foot_sect {
+  background-color: #000000;
+}

@@ -1,18 +1,55 @@
 @use 'config' as *;
 
 .fav_sect {
+  padding-bottom: 100px;
+  background-color: var(--bg_clr);
+  transition: all ease-out 0.5s;
+
   .lrg_center_sect {
     height: 70vh;
     min-height: 350px;
     background-image: url('../assets/social_mediaapp_desktop.jpg');
     position: relative;
+    box-shadow: inset 600px 0 100px 0px #000000cc;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: $brd_rad_lrg;
+    overflow: hidden;
+    @include flexDisp(flex-end, flex-start, column);
+    padding: 0 0 60px 60px;
+    color: $txt_lgt;
 
-    @include mediaQuery(max, $small_screen) {
+    @include mediaQuery(max, $mid_screen) {
       background-image: url('../assets/social_mediaapp_mobile.jpg');
+      box-shadow: inset 0px -200px 100px 0px #000000cc;
+      padding: 0 0 60px 30px;
     }
 
     &::after {
       @include sectOverlay();
+    }
+
+    h1 {
+      font-size: 6.5rem;
+      max-width: 700px;
+      margin-bottom: 20px;
+
+      @include mediaQuery(max, $mid_screen) {
+        width: 80%;
+        font-size: 3.5rem;
+        margin-bottom: 10px;
+      }
+    }
+
+    .more_btn {
+      border-radius: $brd_rad_lrg;
+      border: 2px solid $txt_lgt;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.1rem;
+      font-size: 1.5rem;
+      padding: 15px 40px;
     }
   }
 }

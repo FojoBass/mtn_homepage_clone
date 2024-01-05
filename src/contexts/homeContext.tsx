@@ -14,6 +14,8 @@ interface HomeContextInt {
   setAcctTypeOpt?: Dispatch<SetStateAction<string>>;
   intersectRef?: RefObject<HTMLElement[]>;
   isQLinkInt?: boolean;
+  isSubs?: boolean;
+  setIsSubs?: Dispatch<SetStateAction<boolean>>;
 }
 
 const HomeContext = createContext<HomeContextInt>({});
@@ -24,6 +26,7 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
   const [acctTypeOpt, setAcctTypeOpt] = useState('personal');
   const intersectRef = useRef<HTMLElement[]>([]);
   const [isQLinkInt, setIsQlinkInt] = useState(false);
+  const [isSubs, setIsSubs] = useState(false);
 
   const observerFunc: IntersectionObserverCallback = (entries, observer) => {
     entries.forEach((entry) => {
@@ -47,6 +50,12 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
         observer.observe(el);
       });
     }
+
+    const timer = setTimeout(() => {
+      setIsSubs(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const sharedProps: HomeContextInt = {
@@ -54,6 +63,8 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
     setAcctTypeOpt,
     intersectRef,
     isQLinkInt,
+    isSubs,
+    setIsSubs,
   };
 
   return (

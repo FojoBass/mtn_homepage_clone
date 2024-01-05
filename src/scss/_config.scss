@@ -18,6 +18,7 @@ $small_screen: 500px;
   --txt_clr1: #202020;
   --txt_clr2: #404040;
   --brd_clr: #80808020;
+  --brd_clr2: #353535;
   --trk_clr: #f0f0f0;
   --shd_clr: #8080808f;
   --shd_clr2: #80808020;
@@ -34,6 +35,7 @@ $small_screen: 500px;
   --shd_clr: #000000;
   --shd_clr2: #0000002d;
   --acc_clr: #e3b500;
+  --brd_clr2: #000;
 }
 
 @mixin position($type, $x, $y, $x_value, $y_value) {
