@@ -16,7 +16,6 @@ const QuickLinks = () => {
   const boxesRef = useRef<HTMLDivElement[]>([]);
   const [startClones, setStartClones] = useState<string[]>([]);
   const [endClones, setEndClones] = useState<string[]>([]);
-  // const [sliderLeft, setSliderLeft] = useState(0);
   const sliderTransRef = useRef('all ease-out 1s');
   const [carouselCount, setCarouselCount] = useState(0);
   const btnsClickedRef = useRef(false);
@@ -251,7 +250,6 @@ const QuickLinks = () => {
 
         sliderEl.ontransitionend = () => {
           sliderEl.style.transition = 'none';
-          // sliderEl.style.transform = 'translateX(0)';
           setCarouselCount(navBtns.length - 1);
 
           setTimeout(() => {
@@ -268,7 +266,6 @@ const QuickLinks = () => {
         const boxWidth = boxesRef.current[0].getBoundingClientRect().width;
         transVal =
           (carouselCount - 1) * containerWidth +
-          // (sliderWidth - (carouselCount + 1) * containerWidth);
           sliderWidth -
           (carouselCount * containerWidth +
             boxWidth * endClones.length +
@@ -276,7 +273,6 @@ const QuickLinks = () => {
         setCurrSel(0);
         sliderEl.ontransitionend = () => {
           sliderEl.style.transition = 'none';
-          // sliderEl.style.transform = 'translateX(0)';
           setCarouselCount(0);
 
           setTimeout(() => {

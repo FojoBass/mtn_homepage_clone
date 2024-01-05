@@ -396,7 +396,6 @@
 
                 .title_wrapper {
                   @include flexDisp(space-between, center);
-                  // padding-bottom: 10px;
 
                   &:hover {
                     font-weight: 500;
@@ -493,7 +492,6 @@
 
     .right_side {
       @include flexDisp(flex-end, center);
-      // background-color: green;
       width: 20%;
 
       @include mediaQuery(min, $lrg_screen) {

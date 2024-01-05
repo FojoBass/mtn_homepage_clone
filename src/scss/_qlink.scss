@@ -44,6 +44,7 @@
         position: relative;
         height: 250px;
         overflow: hidden;
+        touch-action: none;
       }
 
       .slider {
@@ -61,6 +62,7 @@
           border-radius: $brd_rad_lrg;
           overflow: hidden;
           border: 2px solid var(--brd_clr);
+          touch-action: pan-x;
 
           &:last-child {
             margin-right: 0;

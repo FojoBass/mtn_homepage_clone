@@ -50,7 +50,6 @@ const Navbar = () => {
     if (midSideRef.current && expandableRef.current) {
       const midSideEl = midSideRef.current;
       const expandableEl = expandableRef.current;
-      // let subNavContainers: HTMLUListElement[] = [];
 
       let navOptEls: HTMLDivElement[] = [
         ...midSideEl.children,
