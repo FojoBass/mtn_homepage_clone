@@ -25,6 +25,17 @@ const Home = () => {
   const footDropContentRef = useRef<HTMLUListElement | null>(null);
   const { isSubs, intersectRef } = useHomeContext();
   const [isChatBox, setIsChatBox] = useState(true);
+  const feedbackRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (feedbackRef.current) {
+      if (
+        window.getComputedStyle(feedbackRef.current).writingMode ===
+        'horizontal-tb'
+      )
+        feedbackRef.current.style.display = 'none';
+    }
+  }, []);
 
   useEffect(() => {
     const footDropWrapperEl = footDropWrapperRef.current;
@@ -264,7 +275,9 @@ const Home = () => {
         </button>
       </div>
 
-      <button className='feedback_wrapper'>Feedback</button>
+      <button className='feedback_wrapper' ref={feedbackRef}>
+        Feedback
+      </button>
 
       <div className='chat_bot_wrapper'>
         <div className={`text_wrapper ${!isChatBox ? 'hide' : ''}`}>
