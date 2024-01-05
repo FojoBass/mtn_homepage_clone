@@ -101,7 +101,7 @@
     .close_btn {
       color: var(--acc_clr);
       font-size: 2.5rem;
-      @include position(absolute, right, top, 10px, 10px);
+      @include position(absolute, right, top, 10px, 0px);
       transition: color ease 0.3s;
       padding: 5px;
       transform: translateY(-200px);
@@ -114,17 +114,17 @@
 
     .wrapper {
       @include flexDisp(space-between, center);
-      min-height: 400px;
+      gap: 10px;
 
       .img_wrapper {
-        height: 100%;
-        width: 20%;
+        align-self: center;
+        width: 30%;
         opacity: 0;
 
         img {
-          object-fit: cover;
-          height: 100%;
           width: 100%;
+          height: auto;
+          max-height: 320px;
         }
       }
 
@@ -138,6 +138,11 @@
           margin-bottom: 10px;
           transform: translateY(-200px);
           opacity: 0;
+
+          @include mediaQuery(max, 500px) {
+            font-size: 2rem;
+            line-height: 2.5rem;
+          }
         }
 
         p {
@@ -145,9 +150,12 @@
           margin-bottom: 30px;
           letter-spacing: 0.1rem;
           font-weight: 300;
-          letter-spacing: 0.1rem;
           transform: translateY(-200px);
           opacity: 0;
+
+          @include mediaQuery(max, 500px) {
+            font-size: 1.5rem;
+          }
         }
 
         input {
@@ -163,6 +171,11 @@
           width: 100%;
           transform: translateX(300px);
           opacity: 0;
+
+          @include mediaQuery(max, 500px) {
+            padding: 10px;
+            font-size: 1.2rem;
+          }
         }
 
         .sub_btn {
@@ -177,6 +190,11 @@
           margin-top: 40px;
           transform: translateX(300px);
           opacity: 0;
+
+          @include mediaQuery(max, 500px) {
+            padding: 10px;
+            font-size: 1.2rem;
+          }
         }
       }
     }
