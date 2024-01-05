@@ -11,6 +11,7 @@
   font-family: $fnt_def;
   scrollbar-width: thin;
   scrollbar-color: var(--acc_clr) var(--trk_clr);
+  touch-action: none;
 
   &::-webkit-scrollbar {
     width: 5px;
