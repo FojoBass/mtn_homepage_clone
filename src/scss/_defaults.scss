@@ -35,6 +35,10 @@
   }
 }
 
+body {
+  background-color: var(--bg_clr);
+}
+
 button {
   outline: none;
   cursor: pointer;
