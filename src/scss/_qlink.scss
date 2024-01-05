@@ -38,14 +38,12 @@
     .carousel_wrapper {
       position: relative;
       width: 90%;
-      // background-color: green;
 
       .slider_container {
         width: 100%;
         position: relative;
         height: 250px;
         overflow: hidden;
-        // background-color: red;
       }
 
       .slider {
@@ -55,9 +53,7 @@
         padding: 0 20px;
 
         .link_wrapper {
-          // width: 415px;
           @include flexDisp(center, center, column);
-          // background-color: green;
           backdrop-filter: blur(30px);
           background-color: #c8c8c826;
           margin-right: 20px;

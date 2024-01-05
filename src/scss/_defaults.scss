@@ -25,12 +25,7 @@
   &::-webkit-scrollbar-thumb {
     width: 5px;
     background-color: var(--acc_clr);
-    // background-color: var(--txt_clr1);
     border-radius: 0 0 10px 10px;
-  }
-
-  @include mediaQuery(min, $mid_screen) {
-    overflow: auto !important;
   }
 
   @include mediaQuery(max, $mid_screen) {

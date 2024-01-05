@@ -39,6 +39,11 @@ export const HomeProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   useEffect(() => {
+    if (isSubs) document.documentElement.style.overflow = 'hidden';
+    else document.documentElement.style.overflow = 'auto';
+  }, [isSubs]);
+
+  useEffect(() => {
     if (intersectRef.current) {
       const modIntEls = [...new Set(intersectRef.current)];
 
