@@ -88,6 +88,7 @@ const QuickLinks = () => {
   };
 
   const handleGestureDown = (e: PointerEvent) => {
+    e.preventDefault();
     isPointerDownRef.current = true;
     iniPointerXRef.current =
       e.clientX -
@@ -98,6 +99,7 @@ const QuickLinks = () => {
   };
 
   const handleGestureMove = (e: PointerEvent) => {
+    e.preventDefault();
     if (
       isPointerDownRef.current &&
       sliderRef.current &&
@@ -114,7 +116,8 @@ const QuickLinks = () => {
     }
   };
 
-  const handleGestureUp = () => {
+  const handleGestureUp = (e: PointerEvent) => {
+    e.preventDefault();
     isPointerDownRef.current = false;
     const sliderEl = sliderRef.current;
     const xDiff = iniPointerXRef.current - currPointerXRef.current;

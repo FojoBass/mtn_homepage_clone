@@ -33,6 +33,7 @@
       text-transform: capitalize;
       margin-bottom: 50px;
       letter-spacing: 0.2rem;
+      text-align: center;
     }
 
     .carousel_wrapper {
@@ -44,7 +45,7 @@
         position: relative;
         height: 250px;
         overflow: hidden;
-        touch-action: none;
+        touch-action: pan-y;
       }
 
       .slider {
@@ -62,7 +63,6 @@
           border-radius: $brd_rad_lrg;
           overflow: hidden;
           border: 2px solid var(--brd_clr);
-          touch-action: pan-x;
 
           &:last-child {
             margin-right: 0;
